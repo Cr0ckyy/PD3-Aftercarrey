@@ -24,11 +24,14 @@
     $('#new_account').click(function () {
         my_modal("Create an Account", 'signup.php?redirect=index.php?page=checkout')
     });
+
     $('#login-form').submit(function (e) {
         e.preventDefault();
         $('#login-form button[type="submit"]').attr('disabled', true).html('Logging in...');
+        
         if ($(this).find('.alert-danger').length > 0)
             $(this).find('.alert-danger').remove();
+     
         $.ajax({
             url: 'admin/ajax.php?action=login2',
             method: 'POST',
@@ -38,9 +41,11 @@
                 $('#login-form button[type="submit"]').removeAttr('disabled').html('Login');
 
             },
+
             success: function (resp) {
                 if (resp == 1) {
                     location.href = '<?php echo isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php?page=home' ?>';
+
                 } else {
                     $('#login-form').prepend('<div class="alert alert-danger">Email or password is incorrect.</div>');
                     $('#login-form button[type="submit"]').removeAttr('disabled').html('Login');

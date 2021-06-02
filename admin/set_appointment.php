@@ -1,14 +1,17 @@
 <?php
 session_start();
 include ('db_connect.php');
+
 $doctor = $conn->query("SELECT * FROM doctors_list ");
 while ($row = $doctor->fetch_assoc()) {
     $doc_arr[$row['id']] = $row;
 }
+
 $patient = $conn->query("SELECT * FROM users WHERE type = 3 ");
 while ($row = $patient->fetch_assoc()) {
     $p_arr[$row['id']] = $row;
 }
+
 if (isset($_GET['id'])) {
     $qry = $conn->query("SELECT * FROM appointment_list WHERE id =" . $_GET['id']);
     foreach ($qry->fetch_array() as $key => $value) {
@@ -84,10 +87,12 @@ if (isset($_GET['id'])) {
         start_load();
 
         $.ajax({
+            
             url: 'ajax.php?action=set_appointment',
             method: 'POST',
             data: $(this).serialize(),
             success: function (response) {
+                
                 response = JSON.parse(response);
 
                 if (response.status === 1) {
@@ -97,6 +102,7 @@ if (isset($_GET['id'])) {
                     setTimeout(function () {
                         location.reload();
                     }, 1500);
+                    
                 } else {
                     $('#msg').html('<div class="alert alert-danger">' + response.msg + '</div>');
                     end_load();

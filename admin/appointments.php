@@ -39,19 +39,25 @@ while ($row = $patient->fetch_assoc()) {
                     while ($row = $qry->fetch_assoc()):
                         ?>
                         <tr>
+                            <!--   strtotime() - parse English textual datetimes into Unix timestamps-->
                             <td><?php echo date("l M d, Y h:i A", strtotime($row['schedule'])) ?></td>
+                            
                             <td><?php echo "DR. " . $doc_arr[$row['doctor_id']]['name'] . ', ' . $doc_arr[$row['doctor_id']]['name'] ?></td>
                             <td><?php echo $p_arr[$row['patient_id']]['name'] ?></td>
+                            
                             <td>
                                 <?php if ($row['status'] == 0): ?>
                                     <span class="badge badge-warning">Pending Request</span>
                                 <?php endif ?>
+
                                 <?php if ($row['status'] == 1): ?>
                                     <span class="badge badge-primary">Confirmed</span>
                                 <?php endif ?>
+
                                 <?php if ($row['status'] == 2): ?>
                                     <span class="badge badge-info">Rescheduled</span>
                                 <?php endif ?>
+
                                 <?php if ($row['status'] == 3): ?>
                                     <span class="badge badge-info">Done</span>
                                 <?php endif ?>
@@ -68,7 +74,7 @@ while ($row = $patient->fetch_assoc()) {
     </div>
 </div>
 <script>
-    
+
     $('.update_app').click(function () {
         my_modal("Edit Appointment", "set_appointment.php?id=" + $(this).attr('data-id'), "mid-large");
     });

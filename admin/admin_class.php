@@ -154,10 +154,12 @@ Class Action {
         if ($save) {
             $query = $this->db->query("SELECT * FROM users WHERE username = '" . $email . "' AND password = '" . sha1($password) . "' ");
             if ($query->num_rows > 0) {
+                
                 foreach ($query->fetch_array() as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $value;
                     }
+                    
                 }
             }
             return 1;
@@ -249,6 +251,7 @@ Class Action {
     // save doctor
     public function save_doctor() {
         extract($_POST);
+        
         $data = " name = '$name' ";
         $data .= ", name_pref = '$name_pref' ";
         $data .= ", clinic_address = '$clinic_address' ";
@@ -267,6 +270,7 @@ Class Action {
 
         // implode - Join array elements with a string:
         $data .= " , specialty_ids = '[" . implode(",", $specialty_ids) . "]' ";
+        
         if (empty($id)) {
             $save = $this->db->query("INSERT INTO doctors_list SET " . $data);
             $did = $this->db->insert_id;

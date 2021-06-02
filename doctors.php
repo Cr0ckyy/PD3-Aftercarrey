@@ -23,6 +23,7 @@ while ($row = $special->fetch_assoc()) {
         <div class="card">
             <div class="card-body">
                 <div class="col-lg-12">
+                    
                     <?php if (isset($_GET['sid']) && $_GET['sid'] > 0): ?>
                         <div class="row">
                             <div class="col-md-12 text-center">
@@ -34,11 +35,29 @@ while ($row = $special->fetch_assoc()) {
                         </div>
                         <hr class="divider">
                     <?php endif; ?>
+                        
                     <?php
                     $where = "";
-                    if (isset($_GET['sid']) && $_GET['sid'] > 0)
-                        $where = " where  (REPLACE(REPLACE(REPLACE(specialty_ids,',','\",\"'),'[','[\"'),']','\"]')) LIKE '%\"" . $_GET['sid'] . "\"%' ";
+// The SQL LIKE Operator
+//The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+//
+//There are two wildcards often used in conjunction with the LIKE operator:
+//
+// The percent sign (%) represents zero, one, or multiple characters
+// The underscore sign (_) represents one, single character
+
+                    if (isset($_GET['sid']) && $_GET['sid'] > 0) { // any where less than 1 means failed to get data
+
+                       
+                        //The REPLACE() function replaces all occurrences of a substring within a string, with a new substring.
+                                  $where = " WHERE  (REPLACE(specialty_ids , ',' , '\" ,\" '), '[' , '[\"' ), ']' ,'\" ]') ) "
+                                . " LIKE '%\" " .
+                                $_GET['sid'] . "\"%' ";
+                        
+                    }
                     $cats = $conn->query("SELECT * FROM doctors_list " . $where . " order by id asc");
+
+
                     while ($row = $cats->fetch_assoc()):
                         ?>
                         <div class="row align-items-center">
@@ -49,7 +68,7 @@ while ($row = $special->fetch_assoc()) {
                                 <p>Name: <b><?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?></b></p>
                                 <p><small>Email: <b><?php echo $row['email'] ?></b></small></p>
                                 <p><small>Clinic Address: <b><?php echo $row['clinic_address'] ?></b></small></p>
-                                <p><small>Contac #: <b><?php echo $row['contact'] ?></b></small></p>
+                                <p><small>Contact Number: <b><?php echo $row['contact'] ?></b></small></p>
                                 <p><small><a href="javascript:void(0)" class="view_schedule" data-id="<?php echo $row['id'] ?>" data-name="<?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?>"><i class='fa fa-calendar'></i> Schedule</a></b></small></p>
                                 <p><b>Specialties:</b></p>
 

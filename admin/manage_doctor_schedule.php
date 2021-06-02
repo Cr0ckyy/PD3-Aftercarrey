@@ -7,10 +7,13 @@
 include 'db_connect.php';
 $qry = $conn->query("SELECT * FROM doctors_schedule WHERE doctor_id =" . $_GET['did']);
 $c = $qry->num_rows;
+
 while ($row = $qry->fetch_assoc()) {
     $id[$row['day']] = $row['id'];
+    
     $from[$row['day']] = date("H:i", strtotime($row['time_from']));
     $to[$row['day']] = date("H:i", strtotime($row['time_to']));
+    
 }
 ?>
 <div class="container-fluid">
@@ -65,6 +68,7 @@ while ($row = $qry->fetch_assoc()) {
             url: 'ajax.php?action=save_schedule',
             method: "POST",
             data: $(this).serialize(),
+            
             success: function (response) {
                 if (response === 1) {
                     alert_toast("The data was successfully saved.", "success");
