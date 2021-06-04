@@ -40,8 +40,8 @@
 </div>
 
 <style>
-    #my_modal .modal-footer{
-        display:none;
+    #my_modal .modal-footer {
+        display: none;
     }
 </style>
 <script>

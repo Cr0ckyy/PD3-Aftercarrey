@@ -14,19 +14,23 @@ if ($qry->num_rows > 0) {
             <form action="" id="manage-settings">
                 <div class="form-group">
                     <label for="name" class="control-label">System Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?php echo isset($meta['name']) ? $meta['name'] : '' ?>" required>
+                    <input type="text" class="form-control" id="name" name="name"
+                           value="<?php echo isset($meta['name']) ? $meta['name'] : '' ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="email" class="control-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo isset($meta['email']) ? $meta['email'] : '' ?>" required>
+                    <input type="email" class="form-control" id="email" name="email"
+                           value="<?php echo isset($meta['email']) ? $meta['email'] : '' ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact</label>
-                    <input type="text" class="form-control" id="contact" name="contact" value="<?php echo isset($meta['contact']) ? $meta['contact'] : '' ?>" required>
+                    <input type="text" class="form-control" id="contact" name="contact"
+                           value="<?php echo isset($meta['contact']) ? $meta['contact'] : '' ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="about" class="control-label">About Content</label>
-                    <textarea name="about" class="text-jqte"><?php echo isset($meta['about_content']) ? $meta['about_content'] : '' ?></textarea>
+                    <textarea name="about"
+                              class="text-jqte"><?php echo isset($meta['about_content']) ? $meta['about_content'] : '' ?></textarea>
 
                 </div>
                 <div class="form-group">
@@ -34,7 +38,8 @@ if ($qry->num_rows > 0) {
                     <input type="file" class="form-control" name="img" onchange="displayImg(this, $(this))">
                 </div>
                 <div class="form-group">
-                    <img src="<?php echo isset($meta['cover_img']) ? '../assets/img/' . $meta['cover_img'] : '' ?>" alt="" id="cimg">
+                    <img src="<?php echo isset($meta['cover_img']) ? '../assets/img/' . $meta['cover_img'] : '' ?>"
+                         alt="" id="cimg">
                 </div>
                 <center>
                     <button class="btn  btn-primary btn-block col-md-2">Save</button>
@@ -43,7 +48,7 @@ if ($qry->num_rows > 0) {
         </div>
     </div>
     <style>
-        img#cimg{
+        img#cimg {
             max-height: 10vh;
             max-width: 6vw;
         }
@@ -60,6 +65,7 @@ if ($qry->num_rows > 0) {
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
         $('.text-jqte').jqte();
 
         $('#manage-settings').submit(function (e) {

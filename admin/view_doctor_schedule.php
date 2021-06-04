@@ -1,11 +1,11 @@
 <style>
-    #my_modal .modal-footer{
+    #my_modal .modal-footer {
         display: none;
     }
 </style>
 
 <?php
-include'db_connect.php';
+include 'db_connect.php';
 $query = $conn->query("SELECT * FROM doctors_schedule where doctor_id=" . $_GET['id']);
 ?>
 
@@ -14,18 +14,18 @@ $query = $conn->query("SELECT * FROM doctors_schedule where doctor_id=" . $_GET[
         <div class="row">
             <table class="table table-striped table-bordered">
                 <thead>
-                    <tr>
-                        <th class="text-center">Day</th>
-                        <th class="text-center">Schedule</th>
-                    </tr>
+                <tr>
+                    <th class="text-center">Day</th>
+                    <th class="text-center">Schedule</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = $query->fetch_assoc()): ?>
-                        <tr>
-                            <th class="text-center"><?php echo $row['day'] ?></th>
-                            <th class="text-center"><?php echo date("h:i A", strtotime($row['time_from'])) . ' - ' . date("h:i A", strtotime($row['time_to'])) ?></th>
-                        </tr>
-                    <?php endwhile; ?>
+                <?php while ($row = $query->fetch_assoc()): ?>
+                    <tr>
+                        <th class="text-center"><?php echo $row['day'] ?></th>
+                        <th class="text-center"><?php echo date("h:i A", strtotime($row['time_from'])) . ' - ' . date("h:i A", strtotime($row['time_to'])) ?></th>
+                    </tr>
+                <?php endwhile; ?>
                 </tbody>
             </table>
         </div>

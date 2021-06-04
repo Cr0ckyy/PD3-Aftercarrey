@@ -1,6 +1,7 @@
 <?php
 
-// session_start — Start new or resume existing session
+// creates a session or resumes the current one based on a session identifier
+//  passed via a GET or POST request, or passed via a cookie.
 session_start();
 
 // Action
@@ -10,7 +11,10 @@ Class Action {
 
     public function __construct() {
 
-        // ob_start — Turn on output buffering
+             // This function will turn output buffering on. 
+        // While output buffering is active no output 
+        // is sent from the script (other than headers), 
+        // instead the output is stored in an internal buffer.
         ob_start();
         include 'db_connect.php';
 
@@ -21,13 +25,20 @@ Class Action {
     public function __destruct() {
         $this->db->close();
 
-        // ob_end_flush — Flush (send) the output buffer and turn off output buffering
+        // The ob_end_flush() function deletes 
+        // the topmost output buffer and outputs all of its contents. 
+        // The output may be caught by another output buffer, or, 
+        // if there are no other output buffers, sent directly to the browser.
         ob_end_flush();
     }
 
 // login
     public function login() {
-        // extract — Import variables into the current symbol table from an array
+        
+         // The extract() function imports variables into the local symbol table from an array.
+        // This function uses array keys as variable names and values as variable values. 
+        // For each element it will create a variable in the current symbol table.
+        // This function returns the number of variables extracted on success.
         extract($_POST);
 
         $query = $this->db->query("SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "' ");
@@ -69,7 +80,7 @@ Class Action {
         foreach ($_SESSION as $key => $value) {
             unset($_SESSION[$key]);
         }
-        // header — Send a raw HTTP header
+        // //The header() function sends a raw HTTP header to a client
         header("location:login.php");
     }
 
@@ -189,7 +200,7 @@ Class Action {
             $data .= ", cover_img = '$file_name' ";
         }
 
-
+ // echo "INSERT INTO system_settings set ".$data;
         $check = $this->db->query("SELECT * FROM system_settings");
 
         if ($check->num_rows > 0) {

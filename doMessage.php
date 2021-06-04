@@ -17,7 +17,9 @@ $message = $_POST['visitor_message'];
 $query = "SELECT * FROM messages WHERE visitor_name='$name'";
 
 // Execute Query
-$result = mysqli_query($link, $query) or die('Error in the database query<br/>' . mysqli_error($link));
+if (!empty($link)) {
+    $result = mysqli_query($link, $query) or die('Error in the database query<br/>' . mysqli_error($link));
+}
 
 // fetches one row of data in a numerical array format from the result if the name  exists
 if (mysqli_num_rows($result) == 1) {
@@ -59,7 +61,7 @@ mysqli_close($link);
                 font-weight: bold;
                 margin-top: 200px;
                 text-align: center;
-                color:red;
+                color: #ff0000;
             }
         </style>
     </head>

@@ -1,7 +1,6 @@
 <?php include 'admin/db_connect.php'; ?>
 
 
-
 <!-- ======= Hero Section ======= -->
 <?php include 'hero.php'; ?>
 <!-- End Hero -->

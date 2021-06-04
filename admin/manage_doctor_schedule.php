@@ -25,7 +25,6 @@ while ($row = $qry->fetch_assoc()) {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-center"></th>
                                 <th class="text-center">Day</th>
                                 <th class="text-center">From</th>
                                 <th class="text-center">To</th>

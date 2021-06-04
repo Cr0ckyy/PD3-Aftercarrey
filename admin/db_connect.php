@@ -1,4 +1,3 @@
-
 <?php
 
 $host = "localhost";
@@ -8,7 +7,7 @@ $db = "aftercare";
 
 
 $conn = new mysqli($host, $username, $password, $db)
-        or die("Mysql could not be connected to." . mysqli_error($conn));
+or die("Mysql could not be connected to." . mysqli_error($conn));
 
 
 $link = mysqli_connect($host, $username, $password, $db);

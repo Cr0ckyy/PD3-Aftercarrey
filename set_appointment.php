@@ -1,8 +1,8 @@
 <?php
-include ('admin/db_connect.php')
+include('admin/db_connect.php')
 ?>
 <style>
-    #my_modal .modal-footer{
+    #my_modal .modal-footer {
         display: none
     }
 </style>
@@ -24,7 +24,8 @@ include ('admin/db_connect.php')
             <hr>
             <div class="col-md-12 text-center">
                 <button class="btn-primary btn btn-sm col-md-4">Request</button>
-                <button class="btn btn-secondary btn-sm col-md-4  " type="button" data-dismiss="modal" id="">Close</button>
+                <button class="btn btn-secondary btn-sm col-md-4  " type="button" data-dismiss="modal" id="">Close
+                </button>
             </div>
         </form>
     </div>

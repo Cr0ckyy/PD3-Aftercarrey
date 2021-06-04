@@ -9,7 +9,7 @@
             <div class="col-md-4">
                 <form action="" id="manage-doctor">
                     <div class="card">
-                        <div class="card-header"> Doctor's Form  </div>
+                        <div class="card-header"> Doctor's Form</div>
 
                         <div class="card-body">
                             <div id="msg"></div>
@@ -18,19 +18,22 @@
                             <!-- Prefix-->
                             <div class="form-group">
                                 <label for="" class="control-label">Prefix</label>
-                                <input type="text" class="form-control" name="name_pref" placeholder="(M.D.)" required="">
+                                <input type="text" class="form-control" name="name_pref" placeholder="(M.D.)"
+                                       required="">
                             </div>
 
                             <!-- Name-->
                             <div class="form-group">
                                 <label class="control-label">Name</label>
-                                <textarea name="name" id="" cols="30" rows="2" class="form-control" required=""></textarea>
+                                <textarea name="name" id="" cols="30" rows="2" class="form-control"
+                                          required=""></textarea>
                             </div>
 
                             <!-- Medical Specialties-->
                             <div class="form-group">
                                 <label class="control-label">Medical Specialties</label>
-                                <select name="specialty_ids[]" id="" multiple=""  class="custom-select browser-default select2">
+                                <select name="specialty_ids[]" id="" multiple=""
+                                        class="custom-select browser-default select2">
                                     <option value=""></option>
                                     <?php
                                     $qry = $conn->query("SELECT * FROM medical_specialty order by name asc");
@@ -44,13 +47,15 @@
                             <!-- Clinic Address-->
                             <div class="form-group">
                                 <label class="control-label">Clinic Address</label>
-                                <textarea name="clinic_address" id="" cols="30" rows="2" class="form-control" required=""></textarea>
+                                <textarea name="clinic_address" id="" cols="30" rows="2" class="form-control"
+                                          required=""></textarea>
                             </div>
 
                             <!-- Contact-->
                             <div class="form-group">
                                 <label for="" class="control-label">Contact</label>
-                                <textarea name="contact" id="" cols="30" rows="2" class="form-control" required=""></textarea>
+                                <textarea name="contact" id="" cols="30" rows="2" class="form-control"
+                                          required=""></textarea>
                             </div>
 
                             <!-- Email-->
@@ -62,7 +67,7 @@
                             <!-- Password-->
                             <div class="form-group">
                                 <label for="" class="control-label">Password</label>
-                                <input type="password" class="form-control" name="password" >
+                                <input type="password" class="form-control" name="password">
                             </div>
 
                             <!-- Image-->
@@ -73,7 +78,7 @@
 
                             <div class="form-group">
                                 <img src="" alt="" id="cimg">
-                            </div>	
+                            </div>
 
 
                         </div>
@@ -99,38 +104,54 @@
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Image</th>
-                                    <th class="text-center">Info</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Info</th>
+                                <th class="text-center">Action</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $i = 1;
-                                $cats = $conn->query("SELECT * FROM doctors_list order by id asc");
-                                while ($row = $cats->fetch_assoc()):
-                                    ?>
-                                    <tr>
-                                        <td class="text-center"><?php echo $i++ ?></td>
-                                        <td class="text-center">
-                                            <img src="../assets/img/<?php echo $row['img_path'] ?>" alt="">
-                                        </td>
-                                        <td class="">
-                                            <p>Name: <b><?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?></b></p>
-                                            <p><small>Email: <b><?php echo $row['email'] ?></b></small></p>
-                                            <p><small>Clinic Address: <b><?php echo $row['clinic_address'] ?></b></small></p>
-                                            <p><small>Contact Numbers: <b><?php echo $row['contact'] ?></b></small></p>
-                                            <p><small><a href="javascript:void(0)" class="view_schedule" data-id="<?php echo $row['id'] ?>" data-name="<?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?>"><i class='fa fa-calendar'></i> Schedule</a></b></small></p>
+                            <?php
+                            $i = 1;
+                            $cats = $conn->query("SELECT * FROM doctors_list order by id asc");
+                            while ($row = $cats->fetch_assoc()):
+                                ?>
+                                <tr>
+                                    <td class="text-center"><?php echo $i++ ?></td>
+                                    <td class="text-center">
+                                        <img src="../assets/img/<?php echo $row['img_path'] ?>" alt="">
+                                    </td>
+                                    <td class="">
+                                        <p>Name: <b><?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?></b>
+                                        </p>
+                                        <p><small>Email: <b><?php echo $row['email'] ?></b></small></p>
+                                        <p><small>Clinic Address: <b><?php echo $row['clinic_address'] ?></b></small>
+                                        </p>
+                                        <p><small>Contact Numbers: <b><?php echo $row['contact'] ?></b></small></p>
+                                        <p><small><a href="javascript:void(0)" class="view_schedule"
+                                                     data-id="<?php echo $row['id'] ?>"
+                                                     data-name="<?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?>"><i
+                                                            class='fa fa-calendar'></i> Schedule</a></b></small></p>
 
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary edit-doctor" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-name_pref="<?php echo $row['name_pref'] ?>" data-clinic_address="<?php echo $row['clinic_address'] ?>" data-contact="<?php echo $row['contact'] ?>"  data-img_path="<?php echo $row['img_path'] ?>" data-specialty_ids="<?php echo $row['specialty_ids'] ?>" data-email="<?php echo $row['email'] ?>">Edit</button>
-                                            <button class="btn btn-sm btn-danger delete_doctor" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-primary edit-doctor" type="button"
+                                                data-id="<?php echo $row['id'] ?>"
+                                                data-name="<?php echo $row['name'] ?>"
+                                                data-name_pref="<?php echo $row['name_pref'] ?>"
+                                                data-clinic_address="<?php echo $row['clinic_address'] ?>"
+                                                data-contact="<?php echo $row['contact'] ?>"
+                                                data-img_path="<?php echo $row['img_path'] ?>"
+                                                data-specialty_ids="<?php echo $row['specialty_ids'] ?>"
+                                                data-email="<?php echo $row['email'] ?>">Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-danger delete_doctor" type="button"
+                                                data-id="<?php echo $row['id'] ?>">Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
@@ -139,19 +160,21 @@
             <!-- Table Panel -->
 
         </div>
-    </div>	
+    </div>
 
 </div>
 <style>
 
-    td{
+    td {
         vertical-align: middle !important;
     }
-    td p{
+
+    td p {
         margin: unset
     }
-    img{
-        max-width:100px;
+
+    img {
+        max-width: 100px;
         max-height: 150px;
     }
 </style>
@@ -193,6 +216,7 @@
             }
         });
     });
+
     function displayImg(input, _this) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();

@@ -1,4 +1,3 @@
-
 <?php include('db_connect.php'); ?>
 
 <div class="container-fluid">
@@ -24,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <img src="" alt="" id="cimg">
-                            </div>	
+                            </div>
 
                         </div>
 
@@ -47,33 +46,39 @@
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Image</th>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Action</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $i = 1;
-                                $cats = $conn->query("SELECT * FROM medical_specialty order by id asc");
-                                while ($row = $cats->fetch_assoc()):
-                                    ?>
-                                    <tr>
-                                        <td class="text-center"><?php echo $i++ ?></td>
-                                        <td class="text-center">
-                                            <img src="../assets/img/<?php echo $row['img_path'] ?>" alt="">
-                                        </td>
-                                        <td class="">
-                                            <b><?php echo $row['name'] ?></b>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary edit_cat" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-img_path="<?php echo $row['img_path'] ?>" >Edit</button>
-                                            <button class="btn btn-sm btn-danger delete_cat" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
+                            <?php
+                            $i = 1;
+                            $cats = $conn->query("SELECT * FROM medical_specialty order by id asc");
+                            while ($row = $cats->fetch_assoc()):
+                                ?>
+                                <tr>
+                                    <td class="text-center"><?php echo $i++ ?></td>
+                                    <td class="text-center">
+                                        <img src="../assets/img/<?php echo $row['img_path'] ?>" alt="">
+                                    </td>
+                                    <td class="">
+                                        <b><?php echo $row['name'] ?></b>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-primary edit_cat" type="button"
+                                                data-id="<?php echo $row['id'] ?>"
+                                                data-name="<?php echo $row['name'] ?>"
+                                                data-img_path="<?php echo $row['img_path'] ?>">Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-danger delete_cat" type="button"
+                                                data-id="<?php echo $row['id'] ?>">Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
@@ -81,19 +86,21 @@
             </div>
             <!-- Table Panel -->
         </div>
-    </div>	
+    </div>
 
 </div>
 <style>
 
-    td{
+    td {
         vertical-align: middle !important;
     }
-    td p{
+
+    td p {
         margin: unset
     }
-    img{
-        max-width:100px;
+
+    img {
+        max-width: 100px;
         max-height: 150px;
     }
 </style>
@@ -155,6 +162,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     function delete_cat($id) {
         start_load();
 

@@ -28,10 +28,10 @@
     $('#login-form').submit(function (e) {
         e.preventDefault();
         $('#login-form button[type="submit"]').attr('disabled', true).html('Logging in...');
-        
+
         if ($(this).find('.alert-danger').length > 0)
             $(this).find('.alert-danger').remove();
-     
+
         $.ajax({
             url: 'admin/ajax.php?action=login2',
             method: 'POST',

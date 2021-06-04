@@ -1,10 +1,10 @@
 <style>
-    #my_modal .modal-footer{
+    #my_modal .modal-footer {
         display: none;
     }
 </style>
 <?php
-include'admin/db_connect.php';
+include 'admin/db_connect.php';
 $qry = $conn->query("SELECT * FROM doctors_schedule where doctor_id=" . $_GET['id']);
 ?>
 <div class="container-fluid">
@@ -14,20 +14,20 @@ $qry = $conn->query("SELECT * FROM doctors_schedule where doctor_id=" . $_GET['i
             <table class="table table-striped table-bordered">
 
                 <thead>
-                    <tr>
-                        <th class="text-center">Day</th>
-                        <th class="text-center">Schedule</th>
-                    </tr>
+                <tr>
+                    <th class="text-center">Day</th>
+                    <th class="text-center">Schedule</th>
+                </tr>
                 </thead>
 
                 <tbody>
 
-                    <?php while ($row = $qry->fetch_assoc()): ?>
-                        <tr>
-                            <th class="text-center"><?php echo $row['day'] ?></th>
-                            <th class="text-center"><?php echo date("h:i A", strtotime($row['time_from'])) . ' - ' . date("h:i A", strtotime($row['time_to'])) ?></th>
-                        </tr>
-                    <?php endwhile; ?>
+                <?php while ($row = $qry->fetch_assoc()): ?>
+                    <tr>
+                        <th class="text-center"><?php echo $row['day'] ?></th>
+                        <th class="text-center"><?php echo date("h:i A", strtotime($row['time_from'])) . ' - ' . date("h:i A", strtotime($row['time_to'])) ?></th>
+                    </tr>
+                <?php endwhile; ?>
 
                 </tbody>
 
@@ -35,7 +35,9 @@ $qry = $conn->query("SELECT * FROM doctors_schedule where doctor_id=" . $_GET['i
         </div>
         <hr>
         <div class="row">
-            <button class="btn btn-secondary btn-sm col-md-4 offset-md-4 " type="button" data-dismiss="modal" id="">Close</button>
+            <button class="btn btn-secondary btn-sm col-md-4 offset-md-4 " type="button" data-dismiss="modal" id="">
+                Close
+            </button>
         </div>
     </div>
 </div>

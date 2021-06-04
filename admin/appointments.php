@@ -1,4 +1,3 @@
-
 <?php
 include 'db_connect.php';
 
@@ -18,17 +17,19 @@ while ($row = $patient->fetch_assoc()) {
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <button class="btn-success btn btn-sm" type="button" id="new_appointment"><i class="fa fa-plus"></i> New Appointment</button>
+                <button class="btn-success btn btn-sm" type="button" id="new_appointment"><i class="fa fa-plus"></i> New
+                    Appointment
+                </button>
                 <br> <br>
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th>Schedule</th>
-                            <th>Doctor</th>
-                            <th>Patient</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>Schedule</th>
+                        <th>Doctor</th>
+                        <th>Patient</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
                     <?php
                     $where = '';
@@ -41,10 +42,10 @@ while ($row = $patient->fetch_assoc()) {
                         <tr>
                             <!--   strtotime() - parse English textual datetimes into Unix timestamps-->
                             <td><?php echo date("l M d, Y h:i A", strtotime($row['schedule'])) ?></td>
-                            
+
                             <td><?php echo "DR. " . $doc_arr[$row['doctor_id']]['name'] . ', ' . $doc_arr[$row['doctor_id']]['name'] ?></td>
                             <td><?php echo $p_arr[$row['patient_id']]['name'] ?></td>
-                            
+
                             <td>
                                 <?php if ($row['status'] == 0): ?>
                                     <span class="badge badge-warning">Pending Request</span>
@@ -63,8 +64,12 @@ while ($row = $patient->fetch_assoc()) {
                                 <?php endif ?>
                             </td>
                             <td class="text-center">
-                                <button  class="btn btn-primary btn-sm update_app" type="button" data-id="<?php echo $row['id'] ?>">Update</button>
-                                <button  class="btn btn-danger btn-sm delete_app" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+                                <button class="btn btn-primary btn-sm update_app" type="button"
+                                        data-id="<?php echo $row['id'] ?>">Update
+                                </button>
+                                <button class="btn btn-danger btn-sm delete_app" type="button"
+                                        data-id="<?php echo $row['id'] ?>">Delete
+                                </button>
                             </td>
                         </tr>
                     <?php endwhile; ?>
