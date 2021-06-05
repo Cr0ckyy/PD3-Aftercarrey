@@ -202,14 +202,13 @@
             type: 'POST',
 
             success: function (response) {
-                if (response === 1) {
+                if (response == 1) {
                     alert_toast("Data has been successfully added.", 'success');
-
                     setTimeout(function () {
                         location.reload();
                     }, 1500);
 
-                } else if (response === 2) {
+                } else if (response == 2) {
                     $('#msg').html('<div class="alert alert-danger">Email already exist.</div>');
                     end_load();
                 }
@@ -219,7 +218,7 @@
 
     function displayImg(input, _this) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function (e) {
                 $('#cimg').attr('src', e.target.result);
             };
@@ -231,7 +230,7 @@
     $('.edit-doctor').click(function () {
         start_load();
 
-        var cat = $('#manage-doctor');
+        let cat = $('#manage-doctor');
         cat.get(0).reset();
 
         cat.find("[name='id']").val($(this).attr('data-id'));
@@ -243,11 +242,11 @@
         cat.find("#cimg").attr("src", "../assets/img/" + $(this).attr('data-img_path'));
 
         if ($(this).attr('data-specialty_ids') !== '') {
-            var ids = $(this).attr('data-specialty_ids');
+            let ids = $(this).attr('data-specialty_ids');
             ids = ids.replace('[', '');
             ids = ids.replace(']', '');
             ids = ids.split(',');
-            var nids = [];
+            let nids = [];
 
             ids.map(function (e) {
                 nids.push(e);
@@ -267,7 +266,7 @@
     });
 
     $('.delete_doctor').click(function () {
-        _conf("Are you certain you want to delete this doctor?", "delete_doctor", [$(this).attr('data-id')]);
+        _conf("Are you certain you want to delete this doctor?", "delete_doctor", [$(this).attr('data-id')]);
     });
 
     function delete_doctor($id) {
@@ -278,7 +277,7 @@
             method: 'POST',
             data: {id: $id},
             success: function (resp) {
-                if (resp === 1) {
+                if (resp == 1) {
                     alert_toast("Data has been successfully deleted.", 'success');
                     setTimeout(function () {
                         location.reload();

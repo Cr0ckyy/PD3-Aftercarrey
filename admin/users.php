@@ -9,6 +9,7 @@
         </div>
     </div>
     <br>
+
     <div class="row">
         <div class="card col-lg-12">
             <div class="card-body">
@@ -39,7 +40,7 @@
                                 <?php echo $row['username'] ?>
                             </td>
                             <td>
-                                <center>
+                                <div style="text-align: center;">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary">Action</button>
                                         <button type="button"
@@ -55,7 +56,7 @@
                                                data-id='<?php echo $row['id'] ?>'>Delete</a>
                                         </div>
                                     </div>
-                                </center>
+                                </div>
                             </td>
                         </tr>
                     <?php endwhile; ?>

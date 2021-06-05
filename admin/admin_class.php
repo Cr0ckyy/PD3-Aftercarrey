@@ -113,6 +113,8 @@ Class Action {
         }
     }
 
+
+
     // delete user
     public function delete_user() {
         extract($_POST);
@@ -122,25 +124,8 @@ Class Action {
         }
     }
 
-// save_message
-    public function save_message() {
-        extract($_POST);
-
-        $data .= ", vistor_name = '$name' ";
-        $data .= ", vistor_email = '$email' ";
-        $data .= ", vistor_subject = '$subject' ";
-        $data .= ", vistor_message = '$message' ";
 
 
-        if (empty($id)) {
-            $save = $this->db->query("INSERT INTO messages SET " . $data);
-        } else {
-            $save = $this->db->query("UPDATE messages SET " . $data . " WHERE vistor_id = " . $id);
-        }
-        if ($save) {
-            return 1;
-        }
-    }
 
     // signup
     public function signup() {
@@ -258,6 +243,7 @@ Class Action {
             return 1;
         }
     }
+
 
     // save doctor
     public function save_doctor() {
@@ -409,6 +395,16 @@ Class Action {
         extract($_POST);
         $delete = $this->db->query("DELETE FROM appointment_list WHERE id = " . $id);
 
+        if ($delete) {
+            return 1;
+        }
+    }
+
+    // delete message
+    public function delete_message() {
+        extract($_POST);
+
+        $delete = $this->db->query("DELETE FROM messages WHERE id = " . $id);
         if ($delete) {
             return 1;
         }

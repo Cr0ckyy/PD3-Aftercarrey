@@ -1,117 +1,75 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="assets/js/jquery-3.5.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/js/additional-methods.min.js" type="text/javascript"></script>
-
-    <script>
-
-        $(document).ready(function () {
-
-
-            reload_table();
-
-
-            $("#defaultTable").on("click", ".btnDelete", function () {
-
-                var id = $(this).val();
-
-                if (confirm('Are you sure you want to delete this message?')) {
-                    // ajax delete data to database
-
-                    $.ajax({
-                        url: "deleteMessage.php",
-                        data: "visitor_id=" + id,
-                        type: "GET",
-                        dataType: "JSON",
-
-                        success: function (data) {
-                            reload_table();
-                        },
-
-                        error: function (obj, textStatus, errorThrown) {
-                            alert("Error " + textStatus + ": " + errorThrown);
-                        }
-                    });
-                }
-            });
-        });
-
-        function reload_table() {
-
-            $.ajax({
-                type: "GET",
-                url: "getMessages.php",
-                cache: false,
-                dataType: "JSON",
-                success: function (response) {
-                    let message = "";
-                    for (let i = 0; i < response.length; i++) {
-
-                        message += "<tr>"
-
-                            + "<td>" + response[i].visitor_id + "</td>"
-                            + "<td>" + response[i].visitor_name + "</td>"
-                            + "<td>" + response[i].visitor_email + "</td>"
-                            + "<td>" + response[i].visitor_subject + "</td>"
-                            + "<td>" + response[i].visitor_message + "</td>"
-                            + "<td>" + response[i].date_created + "</td>"
-                            + "<td>" + "<button class='btnDelete btn btn-danger' value='" + response[i].vistor_id + "'><i class='fa fa-trash'></i> Delete</button></td>"
-
-                            + "</tr>";
-                    }
-                    $("#defaultTable tbody").html(message);
-                },
-                error: function (obj, textStatus, errorThrown) {
-                    Alert("Error " + textStatus + ": " + errorThrown);
-                }
-            });
-        }
-
-
-    </script>
-    <style>
-        form .error {
-            color: #ff0000;
-        }
-
-        body {
-
-            background-color: whitesmoke;
-
-        }
-
-    </style>
-</head>
-<body>
+<?php ?>
 
 <div class="container-fluid">
-    <h3>Manage visitor Messages</h3><br>
-    <table id="defaultTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
-        <thead>
-        <tr>
-            <th>visitor ID</th>
-            <th>visitor Name</th>
-            <th>visitor Email</th>
-            <th>visitor Subject</th>
-            <th>visitor Message</th>
-            <th>Time Sent</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+
+
+    <div class="row">
+        <div class="card col-lg-12">
+            <div class="card-body">
+                <table class="table-striped table-bordered col-md-12">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Visitor Name</th>
+                        <th class="text-center">Visitor Email</th>
+                        <th class="text-center">Visitor Subject</th>
+                        <th class="text-center">Visitor Message</th>
+                        <th class="text-center">Date Sent</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    include 'db_connect.php';
+                    $messages = $conn->query("SELECT * FROM messages order by id");
+                    $i = 1;
+                    while ($row = $messages->fetch_assoc()):
+                        ?>
+                        <tr>
+                            <td><?php echo $i++ ?></td>
+                            <td><?php echo $row['visitor_name'] ?></td>
+                            <td><?php echo $row['visitor_email'] ?></td>
+                            <td><?php echo $row['visitor_subject'] ?></td>
+                            <td><?php echo $row['visitor_message'] ?></td>
+                            <td><?php echo $row['date_created'] ?></td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <button class="btn btn-danger btn-sm delete_message" type="button"
+                                            data-id="<?php echo $row['id'] ?>">Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
+<script>
 
+    $('.delete_message').click(function () {
+        _conf("Are you sure to delete this message?", "delete_message", [$(this).attr('data-id')]);
+    });
 
-</body>
-</html>
+    function delete_message($id) {
+        start_load();
+
+        $.ajax({
+            url: 'ajax.php?action=delete_message',
+            method: 'POST',
+            data: {id: $id},
+
+            success: function (resp) {
+                if (resp == 1) {
+                    alert_toast("Data successfully deleted", 'success');
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
+
+                }
+            }
+        });
+    }
+</script>

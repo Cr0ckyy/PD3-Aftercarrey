@@ -11,9 +11,16 @@ if ($action == 'login') {
         echo $login;
     }
 }
-// message
+
 if ($action == 'save_message') {
     $message = $crud->save_message();
+    if ($message) {
+        echo $message;
+    }
+}
+
+if ($action == 'delete_message') {
+    $message = $crud->delete_message();
     if ($message) {
         echo $message;
     }
