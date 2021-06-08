@@ -30,15 +30,15 @@
                     while ($row = $users->fetch_assoc()):
                         ?>
                         <tr>
-                            <td>
-                                <?php echo $i++ ?>
-                            </td>
-                            <td>
-                                <?php echo $row['name'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['username'] ?>
-                            </td>
+                            <td style="text-align:center"><?php echo $i++ ?></td>
+
+                            <!--user's actual name-->
+                            <td><?php echo $row['name'] ?></td>
+
+                            <!--user's actual name-->
+                            <td><?php echo $row['username'] ?></td>
+
+                            <!--dropdown action list-->
                             <td>
                                 <div style="text-align: center;">
                                     <div class="btn-group">
@@ -49,11 +49,17 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu">
+
+                                            <!-- Edit action-->
                                             <a class="dropdown-item edit_user" href="javascript:void(0)"
                                                data-id='<?php echo $row['id'] ?>'>Edit</a>
+
                                             <div class="dropdown-divider"></div>
+
+                                            <!-- Delete action-->
                                             <a class="dropdown-item delete_user" href="javascript:void(0)"
                                                data-id='<?php echo $row['id'] ?>'>Delete</a>
+
                                         </div>
                                     </div>
                                 </div>

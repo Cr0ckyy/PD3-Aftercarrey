@@ -83,7 +83,7 @@
 
                         </div>
 
-                        <!-- buttons-->
+                        <!-- Actions-->
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-12">
@@ -123,19 +123,29 @@
                                         <img src="../assets/img/<?php echo $row['img_path'] ?>" alt="">
                                     </td>
                                     <td class="">
-                                        <p>Name: <b><?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?></b>
-                                        </p>
+                                        <!--Doctor Name-->
+                                        <p>Name: <b><?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?></b></p>
+
+                                        <!--Doctor Email-->
                                         <p><small>Email: <b><?php echo $row['email'] ?></b></small></p>
-                                        <p><small>Clinic Address: <b><?php echo $row['clinic_address'] ?></b></small>
-                                        </p>
+
+                                        <!--Doctor Clinic Address-->
+                                        <p><small>Clinic Address: <b><?php echo $row['clinic_address'] ?></b></small></p>
+
+                                        <!--Doctor Contact Numbers-->
                                         <p><small>Contact Numbers: <b><?php echo $row['contact'] ?></b></small></p>
+
+                                        <!--Doctor Available Schedule-->
                                         <p><small><a href="javascript:void(0)" class="view_schedule"
                                                      data-id="<?php echo $row['id'] ?>"
                                                      data-name="<?php echo "Dr. " . $row['name'] . ', ' . $row['name_pref'] ?>"><i
                                                             class='fa fa-calendar'></i> Schedule</a></b></small></p>
 
                                     </td>
+                                    <!--Doctor Information Edit Actions-->
                                     <td class="text-center">
+
+                                        <!--edit action-->
                                         <button class="btn btn-sm btn-primary edit-doctor" type="button"
                                                 data-id="<?php echo $row['id'] ?>"
                                                 data-name="<?php echo $row['name'] ?>"
@@ -146,9 +156,12 @@
                                                 data-specialty_ids="<?php echo $row['specialty_ids'] ?>"
                                                 data-email="<?php echo $row['email'] ?>">Edit
                                         </button>
+
+                                        <!--Delete action-->
                                         <button class="btn btn-sm btn-danger delete_doctor" type="button"
                                                 data-id="<?php echo $row['id'] ?>">Delete
                                         </button>
+
                                     </td>
                                 </tr>
                             <?php endwhile; ?>

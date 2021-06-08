@@ -1,6 +1,7 @@
 <?php
-
+// Turn on output buffering
 ob_start();
+
 $action = $_GET['action'];
 include 'admin_class.php';
 $crud = new Action();

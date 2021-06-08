@@ -18,6 +18,7 @@ if (isset($_GET['id'])) {
         $$key = $value;
     }
 }
+
 ?>
 <style>
     #my_modal .modal-footer {
@@ -29,49 +30,68 @@ if (isset($_GET['id'])) {
         <div id="msg"></div>
         <form action="" id="manage-appointment">
             <input type="hidden" name="id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
+
+
+            <!--when doctors login-->
             <?php if ($_SESSION['login_type'] == 2): ?>
                 <input type="hidden" name="doctor_id"
                        value="<?php echo isset($_SESSION['login_doctor_id']) ? $_SESSION['login_doctor_id'] : ''; ?>">
+
             <?php else: ?>
                 <div class="form-group">
                     <label for="" class="control-label">Doctor</label>
-                    <select class="browser-default custom-select select2" name="doctor_id">
-                        <option value=""></option>
-                        <?php foreach ($doc_arr as $row): ?>
-                            <option value="<?php echo $row['id'] ?>" <?php echo isset($doctor_id) && $doctor_id == $row['id'] ? 'selected' : '' ?>><?php echo "DR. " . $row['name'] . ', ' . $row['name'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                    <label>
+                        <select class="browser-default custom-select select2" name="doctor_id">
+                            <option value=""></option>
+                            <?php foreach ($doc_arr as $row): ?>
+                                <option value="<?php echo $row['id'] ?>" <?php echo isset($doctor_id) && $doctor_id == $row['id'] ? 'selected' : '' ?>><?php echo "DR. " . $row['name'] . ', ' . $row['name'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                 </div>
             <?php endif; ?>
+
             <div class="form-group">
                 <label for="" class="control-label">Patient</label>
-                <select class="browser-default custom-select select2" name="patient_id">
-                    <option value=""></option>
-                    <?php foreach ($p_arr as $row): ?>
-                        <option value="<?php echo $row['id'] ?>" <?php echo isset($patient_id) && $patient_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['name'] ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <label>
+                    <select class="browser-default custom-select select2" name="patient_id">
+                        <option value=""></option>
+                        <?php foreach ($p_arr as $row): ?>
+                            <option value="<?php echo $row['id'] ?>" <?php echo isset($patient_id) && $patient_id == $row['id'] ? 'selected' : '' ?>><?php echo $row['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
             </div>
+
             <div class="form-group">
                 <label for="" class="control-label">Date</label>
-                <input type="date" name="date" class="form-control"
-                       value="<?php echo isset($schedule) ? date("Y-m-d", strtotime($schedule)) : '' ?>" required>
+                <label>
+                    <input type="date" name="date" class="form-control"
+                           value="<?php echo isset($schedule) ? date("Y-m-d", strtotime($schedule)) : '' ?>" required>
+                </label>
             </div>
 
             <div class="form-group">
                 <label for="" class="control-label">Time</label>
-                <input type="time" name="time" class="form-control"
-                       value="<?php echo isset($schedule) ? date("H:i", strtotime($schedule)) : '' ?>" required>
+                <label>
+                    <input type="time" name="time" class="form-control"
+                           value="<?php echo isset($schedule) ? date("H:i", strtotime($schedule)) : '' ?>" required>
+                </label>
             </div>
+
             <div class="form-group">
                 <label for="" class="control-label">Status</label>
-                <select class="browser-default custom-select" name="status">
-                    <option value="0" <?php echo isset($status) && $status == 0 ? "selected" : ''; ?>>Request</option>
-                    <option value="1" <?php echo isset($status) && $status == 1 ? "selected" : ''; ?>>Confirm</option>
-                    <option value="2" <?php echo isset($status) && $status == 2 ? "selected" : ''; ?>>Rescheduled
-                    </option>
-                    <option value="3" <?php echo isset($status) && $status == 3 ? "selected" : ''; ?>>Done</option>
-                </select>
+                <label>
+                    <select class="browser-default custom-select" name="status">
+                        <option value="0" <?php echo isset($status) && $status == 0 ? "selected" : ''; ?>>Request
+                        </option>
+                        <option value="1" <?php echo isset($status) && $status == 1 ? "selected" : ''; ?>>Confirm
+                        </option>
+                        <option value="2" <?php echo isset($status) && $status == 2 ? "selected" : ''; ?>>Rescheduled
+                        </option>
+                        <option value="3" <?php echo isset($status) && $status == 3 ? "selected" : ''; ?>>Done</option>
+                    </select>
+                </label>
             </div>
 
 

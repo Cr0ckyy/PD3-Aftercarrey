@@ -5,24 +5,35 @@
 session_start();
 
 // Action
-Class Action {
+class Action
+{
 
     public $db;
 
-    public function __construct() {
+    public function __construct()
+    {
 
-             // This function will turn output buffering on. 
+
+//        Output buffering is a way to tell PHP to hold some data before it is sent to the browser.
+//        Then you can retrieve the data and put it in a variable, manipulate it,
+//        and send it to the browser once you're finished.
+
+        // This function will turn output buffering on.
         // While output buffering is active no output 
         // is sent from the script (other than headers), 
         // instead the output is stored in an internal buffer.
         ob_start();
+
         include 'db_connect.php';
 
         $this->db = $conn;
     }
 
 // destruct
-    public function __destruct() {
+    public function __destruct()
+    {
+
+        // Close a previously opened database connection
         $this->db->close();
 
         // The ob_end_flush() function deletes 
@@ -33,9 +44,10 @@ Class Action {
     }
 
 // login
-    public function login() {
-        
-         // The extract() function imports variables into the local symbol table from an array.
+    public function login()
+    {
+
+        // The extract() function imports variables into the local symbol table from an array.
         // This function uses array keys as variable names and values as variable values. 
         // For each element it will create a variable in the current symbol table.
         // This function returns the number of variables extracted on success.
@@ -56,8 +68,10 @@ Class Action {
     }
 
 // login2
-    public function login2() {
+    public function login2()
+    {
         extract($_POST);
+        // sha1 - Calculate the sha1 hash of a string
         $query = $this->db->query("SELECT * FROM users where username = '" . $email . "' and password = '" . sha1($password) . "' ");
 
         if ($query->num_rows > 0) {
@@ -73,20 +87,24 @@ Class Action {
     }
 
 // logout
-    public function logout() {
+    public function logout()
+    {
 
         // session_destroy — Destroys all data registered to a session
         session_destroy();
+
         foreach ($_SESSION as $key => $value) {
             unset($_SESSION[$key]);
         }
-        // //The header() function sends a raw HTTP header to a client
+        // The header() function sends a raw HTTP header to a client
         header("location:login.php");
     }
 
 // logout2
-    public function logout2() {
+    public function logout2()
+    {
         session_destroy();
+
         foreach ($_SESSION as $key => $value) {
             unset($_SESSION[$key]);
         }
@@ -95,7 +113,8 @@ Class Action {
     }
 
 // save_user
-    public function save_user() {
+    public function save_user()
+    {
         extract($_POST);
 
         $data = " name = '$name' ";
@@ -114,9 +133,9 @@ Class Action {
     }
 
 
-
     // delete user
-    public function delete_user() {
+    public function delete_user()
+    {
         extract($_POST);
         $delete = $this->db->query("DELETE FROM users WHERE id = " . $id);
         if ($delete) {
@@ -125,10 +144,9 @@ Class Action {
     }
 
 
-
-
     // signup
-    public function signup() {
+    public function signup()
+    {
         extract($_POST);
 
         $data = " name = '$name' ";
@@ -138,24 +156,30 @@ Class Action {
         $data .= ", password = '" . sha1($password) . "' ";
         $data .= ", type = 3";
 
+        // checking data by getting all the data from the database
         $check = $this->db->query("SELECT * FROM users WHERE username = '$email' ")->num_rows;
 
         if ($check > 0) {
             return 2;
+
+            // Terminates execution of the script.
+            // Shutdown functions and object destructors will always be executed even if exit is called.
             exit;
         }
 
         $save = $this->db->query("INSERT INTO users SET " . $data);
 
         if ($save) {
+
             $query = $this->db->query("SELECT * FROM users WHERE username = '" . $email . "' AND password = '" . sha1($password) . "' ");
+
             if ($query->num_rows > 0) {
-                
+
                 foreach ($query->fetch_array() as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $value;
                     }
-                    
+
                 }
             }
             return 1;
@@ -163,7 +187,8 @@ Class Action {
     }
 
     // save settings
-    public function save_settings() {
+    public function save_settings()
+    {
 
         extract($_POST);
 
@@ -185,7 +210,7 @@ Class Action {
             $data .= ", cover_img = '$file_name' ";
         }
 
- // echo "INSERT INTO system_settings set ".$data;
+        // echo "INSERT INTO system_settings set ".$data;
         $check = $this->db->query("SELECT * FROM system_settings");
 
         if ($check->num_rows > 0) {
@@ -207,7 +232,8 @@ Class Action {
         }
     }
 
-    public function save_category() {
+    public function save_category()
+    {
         extract($_POST);
 
         $data = " name = '$name' ";
@@ -234,7 +260,8 @@ Class Action {
         }
     }
 
-    public function delete_category() {
+    public function delete_category()
+    {
 
         extract($_POST);
 
@@ -246,9 +273,10 @@ Class Action {
 
 
     // save doctor
-    public function save_doctor() {
+    public function save_doctor()
+    {
         extract($_POST);
-        
+
         $data = " name = '$name' ";
         $data .= ", name_pref = '$name_pref' ";
         $data .= ", clinic_address = '$clinic_address' ";
@@ -257,7 +285,10 @@ Class Action {
 
         if (!empty($_FILES['img']['tmp_name'])) {
 
+            // strtotime — Parse about any English textual datetime description into a Unix timestamp
             $file_name = strtotime(date("Y-m-d H:i")) . "_" . $_FILES['img']['name'];
+
+            // The move_uploaded_file() function moves an uploaded file to a new destination.
             $move = move_uploaded_file($_FILES['img']['tmp_name'], '../assets/img/' . $file_name);
 
             if ($move) {
@@ -267,7 +298,7 @@ Class Action {
 
         // implode - Join array elements with a string:
         $data .= " , specialty_ids = '[" . implode(",", $specialty_ids) . "]' ";
-        
+
         if (empty($id)) {
             $save = $this->db->query("INSERT INTO doctors_list SET " . $data);
             $did = $this->db->insert_id;
@@ -320,8 +351,10 @@ Class Action {
     }
 
     // delete doctor
-    public function delete_doctor() {
+    public function delete_doctor()
+    {
         extract($_POST);
+
         $delete = $this->db->query("DELETE FROM doctors_list WHERE id = " . $id);
         if ($delete) {
             return 1;
@@ -329,8 +362,10 @@ Class Action {
     }
 
     // save schedule
-    public function save_schedule() {
+    public function save_schedule()
+    {
         extract($_POST);
+
         foreach ($days as $key => $value) {
 
             $data = " doctor_id = '$doctor_id' ";
@@ -353,10 +388,12 @@ Class Action {
     }
 
     // set appointment
-    public function set_appointment() {
+    public function set_appointment()
+    {
         extract($_POST);
 
         $doctor = $this->db->query("SELECT * FROM doctors_list WHERE id = " . $doctor_id);
+
         $schedule = date('Y-m-d', strtotime($date)) . ' ' . date('H:i', strtotime($time)) . ":00";
         $day = date('l', strtotime($date));
         $time = date('H:i', strtotime($time)) . ":00";
@@ -368,6 +405,7 @@ Class Action {
         }
 
         $data = " doctor_id = '$doctor_id' ";
+
         if (!isset($patient_id)) {
             $data .= ", patient_id = '" . $_SESSION['login_id'] . "' ";
         } else {
@@ -391,7 +429,8 @@ Class Action {
     }
 
     // delete appointment
-    public function delete_appointment() {
+    public function delete_appointment()
+    {
         extract($_POST);
         $delete = $this->db->query("DELETE FROM appointment_list WHERE id = " . $id);
 
@@ -400,8 +439,9 @@ Class Action {
         }
     }
 
-    // delete message
-    public function delete_message() {
+// delete message
+    public function delete_message()
+    {
         extract($_POST);
 
         $delete = $this->db->query("DELETE FROM messages WHERE id = " . $id);

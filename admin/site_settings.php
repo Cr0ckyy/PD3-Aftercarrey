@@ -29,8 +29,9 @@ if ($qry->num_rows > 0) {
                 </div>
                 <div class="form-group">
                     <label for="about" class="control-label">About Content</label>
-                    <textarea name="about"
-                              class="text-jqte"><?php echo isset($meta['about_content']) ? $meta['about_content'] : '' ?></textarea>
+                    <label>
+                        <textarea name="about" class="text-jqte"><?php echo isset($meta['about_content']) ? $meta['about_content'] : '' ?></textarea>
+                    </label>
 
                 </div>
                 <div class="form-group">
@@ -41,12 +42,13 @@ if ($qry->num_rows > 0) {
                     <img src="<?php echo isset($meta['cover_img']) ? '../assets/img/' . $meta['cover_img'] : '' ?>"
                          alt="" id="cimg">
                 </div>
-                <center>
+                <div style="text-align: center;">
                     <button class="btn  btn-primary btn-block col-md-2">Save</button>
-                </center>
+                </div>
             </form>
         </div>
     </div>
+
     <style>
         img#cimg {
             max-height: 10vh;
@@ -86,7 +88,7 @@ if ($qry->num_rows > 0) {
 
                 },
                 success: function (response) {
-                    if (response === 1) {
+                    if (response == 1) {
                         alert_toast('The data was successfully saved.', 'success');
                         setTimeout(function () {
                             location.reload();

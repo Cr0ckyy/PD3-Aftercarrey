@@ -15,6 +15,7 @@
                         <th class="text-center">Visitor Subject</th>
                         <th class="text-center">Visitor Message</th>
                         <th class="text-center">Date Sent</th>
+                        <th class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,12 +26,24 @@
                     while ($row = $messages->fetch_assoc()):
                         ?>
                         <tr>
-                            <td><?php echo $i++ ?></td>
+                            <td style="text-align:center"><?php echo $i++ ?></td>
+
+                            <!-- Visitor Name -->
                             <td><?php echo $row['visitor_name'] ?></td>
+
+                            <!-- Visitor Email -->
                             <td><?php echo $row['visitor_email'] ?></td>
+
+                            <!-- Visitor Subject -->
                             <td><?php echo $row['visitor_subject'] ?></td>
+
+                            <!-- Visitor Message -->
                             <td><?php echo $row['visitor_message'] ?></td>
+
+                            <!-- Date Sent -->
                             <td><?php echo $row['date_created'] ?></td>
+
+                            <!-- Action -->
                             <td>
                                 <div style="text-align: center;">
                                     <button class="btn btn-danger btn-sm delete_message" type="button"
@@ -38,8 +51,10 @@
                                     </button>
                                 </div>
                             </td>
+
                         </tr>
                     <?php endwhile; ?>
+
                     </tbody>
                 </table>
             </div>

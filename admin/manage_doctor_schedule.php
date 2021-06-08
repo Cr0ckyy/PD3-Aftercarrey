@@ -1,5 +1,5 @@
 <style>
-    #my_modal .modal-footer{
+    #my_modal{
         display: none;
     }
 </style>

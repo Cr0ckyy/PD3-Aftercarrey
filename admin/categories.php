@@ -13,14 +13,20 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="id">
+
+                            <!--  Upload Doctor Specialty-->
                             <div class="form-group">
                                 <label class="control-label">Specialty</label>
                                 <textarea name="name" id="" cols="30" rows="2" class="form-control"></textarea>
                             </div>
+
+                            <!--  Upload Doctor Specialty Image-->
                             <div class="form-group">
                                 <label for="" class="control-label">Image</label>
                                 <input type="file" class="form-control" name="img" onchange="displayImg(this, $(this))">
                             </div>
+
+                            <!--  Display of uploaded Doctor Specialty Image-->
                             <div class="form-group">
                                 <img src="" alt="" id="cimg">
                             </div>
@@ -61,24 +67,36 @@
                                 ?>
                                 <tr>
                                     <td class="text-center"><?php echo $i++ ?></td>
+
+                                    <!--  Uploaded Doctor Specialty Image-->
                                     <td class="text-center">
                                         <img src="../assets/img/<?php echo $row['img_path'] ?>" alt="">
                                     </td>
+
+                                    <!--  Uploaded Doctor Specialty-->
                                     <td class="">
                                         <b><?php echo $row['name'] ?></b>
                                     </td>
+
+                                    <!--  Actions-->
                                     <td class="text-center">
+
+                                        <!-- edit action-->
                                         <button class="btn btn-sm btn-primary edit_cat" type="button"
                                                 data-id="<?php echo $row['id'] ?>"
                                                 data-name="<?php echo $row['name'] ?>"
                                                 data-img_path="<?php echo $row['img_path'] ?>">Edit
                                         </button>
+
+                                        <!-- delete action-->
                                         <button class="btn btn-sm btn-danger delete_cat" type="button"
                                                 data-id="<?php echo $row['id'] ?>">Delete
                                         </button>
+
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -140,7 +158,7 @@
 
     $('.edit_cat').click(function () {
         start_load();
-        var cat = $('#manage-category');
+        const cat = $('#manage-category');
         cat.get(0).reset();
         cat.find("[name='id']").val($(this).attr('data-id'));
         cat.find("[name='name']").val($(this).attr('data-name'));
@@ -154,7 +172,7 @@
 
     function displayImg(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.onload = function (read) {
                 $('#cimg').attr('src', read.target.result);
             };

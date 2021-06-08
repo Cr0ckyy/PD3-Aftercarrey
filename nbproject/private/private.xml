@@ -2,40 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/header.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/login.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/messages.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/about.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/contact.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/footer.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/appointments.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/site_settings.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/users.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/navbar.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/ajax.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/doctors.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/hero.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/home.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/index.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/home.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/db_connect.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/manage_doctor_schedule.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/view_doctor_schedule.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/set_appointment.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/signup.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/navbar.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/header.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/index.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/set_appointment.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/doMessage.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/getMessages.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/login.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/manage_user.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/view_doctor_schedule.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/admin_class.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/doctors.php</file>
-            <file>file:/C:/xampp/htdocs/Final_AfterCarrey/admin/categories.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

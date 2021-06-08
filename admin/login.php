@@ -85,9 +85,9 @@
                     </div
 
 
-                    <center>
+                    <div style="text-align: center;">
                         <button class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</button>
-                    </center>
+                    </div>
                 </form>
             </div>
         </div>
@@ -104,7 +104,7 @@
 
 <script>
     function showPassword() {
-        var ps = document.getElementById("password");
+        const ps = document.getElementById("password");
         if (ps.type === "password") {
             ps.type = "text";
         } else {
@@ -115,8 +115,10 @@
     $('#login-form').submit(function (e) {
         e.preventDefault();
         $('#login-form button[type="button"]').attr('disabled', true).html('Logging in...');
+
         if ($(this).find('.alert-danger').length > 0)
             $(this).find('.alert-danger').remove();
+
         $.ajax({
             url: 'ajax.php?action=login',
             method: 'POST',

@@ -13,6 +13,7 @@ while ($row = $patient->fetch_assoc()) {
     $p_arr[$row['id']] = $row;
 }
 ?>
+
 <div class="container-fluid">
     <div class="col-md-12">
         <div class="card">
@@ -24,10 +25,11 @@ while ($row = $patient->fetch_assoc()) {
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Schedule</th>
-                        <th>Doctor</th>
-                        <th>Patient</th>
-                        <th>Status</th>
+                        <th>#</th>
+                        <th>Scheduled Date</th>
+                        <th>Doctor Name</th>
+                        <th>Patient Name</th>
+                        <th>Patient Appointment Status </th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -37,15 +39,25 @@ while ($row = $patient->fetch_assoc()) {
                         $where = " where doctor_id = " . $_SESSION['login_doctor_id'];
                     }
                     $qry = $conn->query("SELECT * FROM appointment_list " . $where . " order by id desc ");
+                    $i = 1;
                     while ($row = $qry->fetch_assoc()):
                         ?>
                         <tr>
+
+                            <td style="text-align:center"><?php echo $i++ ?></td>
+
                             <!--   strtotime() - parse English textual datetimes into Unix timestamps-->
+
+                            <!-- Scheduled Date-->
                             <td><?php echo date("l M d, Y h:i A", strtotime($row['schedule'])) ?></td>
 
-                            <td><?php echo "DR. " . $doc_arr[$row['doctor_id']]['name'] . ', ' . $doc_arr[$row['doctor_id']]['name'] ?></td>
+                            <!-- Doctor Name-->
+                            <td><?php echo "Dr. " . $doc_arr[$row['doctor_id']]['name'] . ', ' . $doc_arr[$row['doctor_id']]['name'] ?></td>
+
+                            <!-- Patient Name-->
                             <td><?php echo $p_arr[$row['patient_id']]['name'] ?></td>
 
+                            <!-- Patient Appointment Status -->
                             <td>
                                 <?php if ($row['status'] == 0): ?>
                                     <span class="badge badge-warning">Pending Request</span>
@@ -63,6 +75,8 @@ while ($row = $patient->fetch_assoc()) {
                                     <span class="badge badge-info">Done</span>
                                 <?php endif ?>
                             </td>
+
+                            <!-- Actions-->
                             <td class="text-center">
                                 <button class="btn btn-primary btn-sm update_app" type="button"
                                         data-id="<?php echo $row['id'] ?>">Update
@@ -71,8 +85,10 @@ while ($row = $patient->fetch_assoc()) {
                                         data-id="<?php echo $row['id'] ?>">Delete
                                 </button>
                             </td>
+
                         </tr>
                     <?php endwhile; ?>
+
                 </table>
             </div>
         </div>
