@@ -10,6 +10,9 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=doctors"></span>
                         Appointment</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=about">About</a></li>
+
+
+                <!--onced loged in-->
                 <?php if (isset($_SESSION['login_id'])): ?>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger"
                                             href="admin/ajax.php?action=logout2"><?php echo "Welcome " . $_SESSION['login_name'] ?>
@@ -18,6 +21,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:void(0)" id="login_now">Login</a>
                     </li>
                 <?php endif; ?>
+
             </ul>
         </div>
     </div>
