@@ -116,7 +116,7 @@ while ($row = $patient->fetch_assoc()) {
             method: 'POST',
             data: {id: $id},
             success: function (resp) {
-                if (resp === 1) {
+                if (resp == 1) {
                     alert_toast("Data has been successfully deleted.", 'success');
                     setTimeout(function () {
                         location.reload();

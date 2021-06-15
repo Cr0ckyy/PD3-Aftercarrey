@@ -203,7 +203,7 @@ class Action
         if ($_FILES['img']['tmp_name'] != '') {
 
             // strtotime - Parse English textual datetimes into Unix timestamps:
-            $file_name = strtotime(date('y-m-d H:i')) . '_' . $_FILES['img']['name'];
+            $file_name = strtotime(("now America/New_York"), date('y-m-d H:i')) . '_' . $_FILES['img']['name'];
 
             // move_uploaded_file — Moves an uploaded file to a new location
             $move = move_uploaded_file($_FILES['img']['tmp_name'], '../assets/img/' . $file_name);
