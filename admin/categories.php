@@ -139,13 +139,13 @@
             type: 'POST',
 
             success: function (response) {
-                if (response === 1) {
+                if (response == 1) {
                     alert_toast("Data has been successfully added.", 'success');
                     setTimeout(function () {
                         location.reload();
                     }, 1500);
 
-                } else if (response === 2) {
+                } else if (response == 2) {
                     alert_toast("Data has been successfully updated.", 'success');
                     setTimeout(function () {
                         location.reload();
@@ -189,7 +189,7 @@
             method: 'POST',
             data: {id: $id},
             success: function (resp) {
-                if (resp === 1) {
+                if (resp == 1) {
                     alert_toast("Data has been successfully deleted.", 'success');
                     setTimeout(function () {
                         location.reload();

@@ -88,6 +88,7 @@
     });
 
     function delete_user($id) {
+
         start_load();
 
         $.ajax({

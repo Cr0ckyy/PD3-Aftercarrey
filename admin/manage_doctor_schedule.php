@@ -1,5 +1,5 @@
 <style>
-    #my_modal{
+    #my_modal {
         display: none;
     }
 </style>
@@ -10,40 +10,46 @@ $c = $qry->num_rows;
 
 while ($row = $qry->fetch_assoc()) {
     $id[$row['day']] = $row['id'];
-    
+
     $from[$row['day']] = date("H:i", strtotime($row['time_from']));
     $to[$row['day']] = date("H:i", strtotime($row['time_to']));
-    
+
 }
 ?>
 <div class="container-fluid">
-    <form  id="manage-schedule">
+    <form id="manage-schedule">
         <input type="hidden" name="doctor_id" value="<?php echo $_GET['did'] ?>">
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th class="text-center">Day</th>
-                                <th class="text-center">From</th>
-                                <th class="text-center">To</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">Day</th>
+                            <th class="text-center">From</th>
+                            <th class="text-center">To</th>
+                        </tr>
                         </thead>
                         <tbody>
 
-                            <?php
-                            $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
-                            for ($i = 0; $i < count($days); $i++):
-                                ?>
-                                <tr>
-                                    <td class=""><input type="checkbox" name="check[<?php echo $i ?>]" value="<?php echo isset($id[$days[$i]]) ? $id[$days[$i]] : '' ?>" <?php echo isset($id[$days[$i]]) ? "checked" : ( $c > 0 ? '' : 'checked') ?>></td>
-                                    <td class=""><?php echo $days[$i] ?> <input type="hidden" name="days[<?php echo $i ?>]" value="<?php echo $days[$i] ?>"></td>
-                                    <td class="text-center"><input name="time_from[<?php echo $i ?>]" type="time" value="<?php echo isset($from[$days[$i]]) ? $from[$days[$i]] : '' ?>" class="form-control" id=""></td>
-                                    <td class="text-center"><input name="time_to[<?php echo $i ?>]" type="time" value="<?php echo isset($to[$days[$i]]) ? $to[$days[$i]] : '' ?>" class="form-control" id=""></td>
-                                </tr>
-                            <?php endfor; ?>
-
+                        <?php
+                        $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+                        for ($i = 0; $i < count($days); $i++):
+                            ?>
+                            <tr>
+                                <td class=""><input type="checkbox" name="check[<?php echo $i ?>]"
+                                                    value="<?php echo isset($id[$days[$i]]) ? $id[$days[$i]] : '' ?>" <?php echo isset($id[$days[$i]]) ? "checked" : ($c > 0 ? '' : 'checked') ?>>
+                                </td>
+                                <td class=""><?php echo $days[$i] ?> <input type="hidden" name="days[<?php echo $i ?>]"
+                                                                            value="<?php echo $days[$i] ?>"></td>
+                                <td class="text-center"><input name="time_from[<?php echo $i ?>]" type="time"
+                                                               value="<?php echo isset($from[$days[$i]]) ? $from[$days[$i]] : '' ?>"
+                                                               class="form-control" id=""></td>
+                                <td class="text-center"><input name="time_to[<?php echo $i ?>]" type="time"
+                                                               value="<?php echo isset($to[$days[$i]]) ? $to[$days[$i]] : '' ?>"
+                                                               class="form-control" id=""></td>
+                            </tr>
+                        <?php endfor; ?>
 
 
                         </tbody>
@@ -52,8 +58,9 @@ while ($row = $qry->fetch_assoc()) {
             </div>
             <hr>
             <div class="row">
-                <button class="btn btn-primary btn-sm col-md-3 mr-2" >Save</button>
-                <button class="btn btn-secondary btn-sm col-md-3  " type="button" data-dismiss="modal" id="">Close</button>
+                <button class="btn btn-primary btn-sm col-md-3 mr-2">Save</button>
+                <button class="btn btn-secondary btn-sm col-md-3  " type="button" data-dismiss="modal" id="">Close
+                </button>
             </div>
         </div>
     </form>
@@ -67,14 +74,14 @@ while ($row = $qry->fetch_assoc()) {
             url: 'ajax.php?action=save_schedule',
             method: "POST",
             data: $(this).serialize(),
-            
+
             success: function (response) {
                 if (response === 1) {
                     alert_toast("The data was successfully saved.", "success");
-                    var title = $("#my_modal .modal-title").html();
+                    const title = $("#my_modal .modal-title").html();
                     title.replace("Edit ", '');
                     end_load();
-                    uni_modal(title, 'view_doctor_schedule.php?id=<?php echo $_GET['did'] ?>');
+                    my_modal(title, 'view_doctor_schedule.php?id=<?php echo $_GET['did'] ?>');
                 }
             }
         });

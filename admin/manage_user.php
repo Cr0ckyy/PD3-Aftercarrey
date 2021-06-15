@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
             method: 'POST',
             data: $(this).serialize(),
             success: function (response) {
-                if (response === 1) {
+                if (response == 1) {
                     alert_toast("Data was successfully saved.", 'success');
                     setTimeout(function () {
                         location.reload();

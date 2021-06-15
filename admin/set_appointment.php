@@ -120,7 +120,7 @@ if (isset($_GET['id'])) {
 
                 response = JSON.parse(response);
 
-                if (response.status === 1) {
+                if (response.status == 1) {
                     alert_toast("The request was successfully submitted.");
 
                     $('.modal').modal("hide");
