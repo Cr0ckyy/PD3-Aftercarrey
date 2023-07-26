@@ -1,10 +1,9 @@
-# PD3_Aftercarrey
-AfterCarrey is a PHP and MySQL web application built with the WAMP stacks. It is an appointment booking web app that allows users to register as patients to set appointments with doctors who are accessible to provide users with relevant aftercare services based on their unique health issues.
-
-
-
-Users may view each doctor's available time slots, so they know when the doctors are available for reservations. Furthermore, unregistered users or visitors can send a message to the Localhost with any questions or issues they may have.
-
-
-
-The application also has an admin system that allows staff (doctors or administrators) to create, read, update, and delete the following categories: Appointment, Messages, Doctors, Medical Specialties, Users, and Site Settings.
+# PD3-Aftercarrey
+- AfterCarrey is a PHP and MySQL web application using WAMP stacks.
+- It's an appointment booking web app for aftercare services.
+- Users can register as patients to book appointments with doctors.
+- Doctors provide relevant aftercare based on the user's health issues.
+- Users can view doctors' available time slots for reservations.
+- Unregistered users can send messages with questions or issues.
+- The application includes an admin system for staff (doctors or admins).
+- Admins can manage Appointments, Messages, Doctors, Medical Specialties, Users, and Site Settings.
